@@ -1,0 +1,13 @@
+<datalist id="artists">
+ <% Song.all.each do |song| %>
+    <option value=" <%= song.artist %>" >
+ <% end %>
+</datalist>
+
+<form action="/save_artist_filter">
+<label for="artist">Who is the artist?</label>
+    <input type="text" id="artist" list="artists" placeholder="Jane Taylor" name="artist"></br>
+  
+<input type="submit">
+
+</form>

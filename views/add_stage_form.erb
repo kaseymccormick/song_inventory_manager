@@ -1,0 +1,13 @@
+<h3>Adding a status stage</h3>
+  <ul>the current stages are
+    <% Status.all.each do |status| %>
+       <li> ID<%= status.id %> – <%= status.stage %> </li>
+    <% end %>
+  </ul>
+    
+<form action="/add_stage"> 
+    Additional status stage:
+      <input type="text" placeholder="lost the cd" name="type"></br></br>
+      <input type="submit">
+      
+</form>

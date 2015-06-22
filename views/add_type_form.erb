@@ -1,0 +1,13 @@
+<h3>Adding a Genre type</h3>
+  <ul>the current types are
+    <% Genre.all.each do |genre| %>
+       <li> ID <%= genre.id %> – <%= genre.type %> </li>
+    <% end %>
+  </ul>
+    
+<form action="/add_type"> 
+    New genre type: 
+      <input type="text" placeholder="kids-bop" name="type"></br></br>
+    <input type="submit">
+      
+</form>

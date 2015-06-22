@@ -1,0 +1,5 @@
+     <ul>
+      <% Song.all.each do |song| %>
+         <li> <%= song.song_id %> – <%= song.title %> – <%= song.artist %> genre: <%= song.genre_id %> status: <%= song.status_id %> desire level: <%= song.desire_level %>  </li>
+      <% end %>
+    </ul>

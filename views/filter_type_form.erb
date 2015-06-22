@@ -1,0 +1,12 @@
+<form action="/save_genre_type_filter">
+<h3>What genre type would you like to see a list of songs for?</h3>
+<label for="genre">genre type options are</label>
+    <select id="genre" name="type">
+      <% Genre.all.each do |genre| %>
+         <option value= "<%= genre.id %>" ><%= genre.type %> </option>
+      <% end %>
+    </select></br>
+  
+<input type="submit">
+
+</form>

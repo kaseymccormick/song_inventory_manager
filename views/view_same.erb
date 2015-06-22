@@ -1,0 +1,16 @@
+
+<ul>
+  <% if params["weapon"] == "rock" %>
+    <li><a href="/tie">Rock</a></li>
+    <li><a href="/win">Paper</a></li>
+    <li><a href="/lose">Scissors</a></li>
+  <% elsif params["weapon"] == "paper" %>
+    <li><a href="/lose">Rock</a></li>
+    <li><a href="/tie">Paper</a></li>
+    <li><a href="/win">Scissors</a></li>
+  <% elsif params["weapon"] == "scissors" %>
+    <li><a href="/win">Rock</a></li>
+    <li><a href="/lose">Paper</a></li>
+    <li><a href="/tie">Scissors</a></li>
+  <% end %>
+</ul>

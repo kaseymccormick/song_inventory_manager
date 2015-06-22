@@ -1,0 +1,27 @@
+<h2>Enter a complete song record</h2>
+<form action="/save_song">
+  
+  <h3>What is the title of the song?</h3>
+    <input type="text" placeholder="Twinkle Twinkle" name="title">
+    
+  <h3>Who is the artist of the song?</h3>
+    <input type="text" placeholder="Jane Taylor" name="artist">
+    
+  <h3>Please select genre type</h3>
+    <select name="type">
+      <% Genre.all.each do |genre| %>
+         <option value= "<%= genre.id %>" ><%= genre.type %> </option>
+      <% end %>
+    </select>
+    
+  
+<h3>Please slect the status stage</h3>
+    <select name="stage">
+      <% Status.all.each do |status| %>
+         <option value= "<%= status.id %>" ><%= status.stage %> </option>
+      <% end %>
+    </select>
+
+<p>  <input type="submit"></p>
+  
+</form>

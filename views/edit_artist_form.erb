@@ -1,0 +1,13 @@
+<form action="save_new_artist">
+  <h3>Edit an existing song</h3>
+   <ul>Songs in your inventory are:
+    <% Song.all.each do |song| %>
+       <li> id: <%= song.song_id %> – <%= song.title %> – <%= song.artist %> genre: <%= song.genre_id %> status: <%= song.status_id %> desire level: <%= song.desire_level %>  </li>
+    <% end %>
+  </ul>
+  <label for="id">What is the id of the song you'd like to edit</label>
+      <input type="text" placeholder="3" name="id"></br>
+  <label for="artist">Who is the new artist?</label>
+      <input type="text" placeholder="New Artist" name="new_artist"></br>
+  <input type="submit">
+</form>

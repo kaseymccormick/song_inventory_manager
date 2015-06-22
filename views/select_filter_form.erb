@@ -1,0 +1,33 @@
+<h2>Please select the filter you would like to use</h2>
+
+
+<radiogroup>
+  <radio id="artist" label="By artist" accesskey="a"/>
+
+  <input type="radio" name="filter" value="artist" checked><h3>By artist</h3>
+    <input type="text" placeholder="Jane Taylor" name="artist">
+
+
+<input type="radio" name="sex" value="female">Female
+
+<input type="radio" name="filter" velue="genre_type" selected="true"/>
+  <h3>By genre type</h3>
+  
+      <select name="type">
+        <% Genre.all.each do |genre| %>
+           <option value= "<%= genre.id %>" ><%= genre.type %> </option>
+        <% end %>
+      </select>
+
+<radio id="status" label="status_stage"  accesskey="s" disabled="true"/>
+  <h3>By status</h3>
+  
+    <select name="stage">
+      <% Status.all.each do |status| %>
+         <option value= "<%= status.id %>" ><%= status.stage %> </option>
+      <% end %>
+    </select>
+
+
+</radiogroup>
+ 
