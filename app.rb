@@ -24,6 +24,8 @@ get "/home" do
   erb :"homepage"
 end
 
+##_________________________Adding info___________________
+
 # add/type stage song
 get "/add/song" do
   erb :"add_song_form"
@@ -37,6 +39,7 @@ get "/save_song" do
 
     if Song.add(params["title"], params["artist"], params["type"], params["stage"])
       "Song added"
+      erb :"complete_song_list"
     else
       updated_level = (Song.get_level(params["title"], params["artist"]) +1)
       song = Song.get_row(params["title"], params["artist"]).first
@@ -45,105 +48,163 @@ get "/save_song" do
       song.desire_level = updated_level
       song.save
       "desire level adjusted"
+      @desire_level =true
+      erb :"complete_song_list"
     end
   end
- #  @new_song = Song.new
-#
-#   if new_song.exist?(params["title"], params["artist"]) == false
-#     Song.add(song_title, song_artist, genre_id, status_id)
-#     erb :"song_added"
-#   else
-#     "Failure. Try again."
-#   end
-# end
-#
-# if Song.exist?(song_title, song_artist) == false
-#   #going into song class using add method passing arguments of title, artist, genre_id, status_id to create a new object of song.       Creating a row in the Songs table
-#     Song.add(song_title, song_artist, genre_id, status_id)
-# else
-#    updated_level = (Song.get_level(song_title, song_artist) +1)
-#
-#
-#    song = Song.get_row(song_title, song_artist).first
-#
-#
-#    song.desire_level = updated_level
-#    song.save
-#
-#
-#   puts "song, already added, increasing desire level to #{updated_level}."
-# end
 
 
-# add/type stage song
+# add type
 get "/add/type" do
   erb :"add_type_form"
 end
 
+get "/add_type" do
+  Genre.add(params["type"])
+  "type added"
+end
+
+get "/add_stage" do
+  Status.add(params["stage"])
+  "stage added"
+end
+
+# add stage
 get "/add/stage" do
   erb :"add_stage_form"
 end
-
+##____________________________________________________________________
+##_____________________________________start of view x
+# view song list
 get "/view/song_list" do
   erb :"complete_song_list"
 end
-
+#-----------------------------
+#view all same artist
 get "/view_same/artist" do
   erb :"filter_artist_form"
 end
+
+get "/save_artist_filter" do
+  @these_songs = Song.artist(params["artist"])
+  erb :"list_same"
+end
+
+#----------------------------- 
 
 get "/view_same/type" do
   erb :"filter_type_form"
 end
 
+get "/save_type_filter" do
+  @these_songs = Song.genre_type(params["type"])
+  erb :"list_same"
+end
+
+#----------------------------
+
 get "/view_same/stage" do
   erb :"filter_stage_form"
 end
 
-get "/save_genre_type_filter" do
-  erb :"type_filter_list"
+get "/save_stage_filter" do
+  @these_songs = Song.status_stage(params["stage"])
+  erb :"list_same"
 end
 
-get "/save_status_stage_filter" do
-  erb :"stage_filter_list"
-end
+#------------------
+###_________________________________________________________________
 
-get "/save_artist_filter" do
-  erb :"artist_filter_list"
-end
 
 #edit/ title artist genre status
 get "/edit/title" do
   erb :"edit_title_form"
 end
 
-# # when get the save do bleh
-# get
-# end
+get "/edit/save_new_title" do
+  song = Song.find(params["id"])
+  song.title = (params["new_title"])
+  song.save
+  erb :"complete_song_list"
+  @song_edit = true
+end
 
 
 get "/edit/artist" do
   erb :"edit_artist_form"
 end
 
-# when get the save do bleh
-# get
-# end
+get "/edit/save_new_artist" do
+  song = Song.find(params["id"])
+  song.artist = (params["new_artist"])
+  song.save
+  
+  @song_edit = true  
+  erb :"complete_song_list"
+  
+end
 
 get "/edit/genre" do
   erb :"edit_genre_form"
 end
 
-# when get the save do bleh
-# get
-# end
+get "/edit/save_new_genre" do
+  song = Song.find(params["id"])
+  song.genre_id = (params["type"])
+  song.save
+  
+  @song_edit = true
+  erb :"complete_song_list"
+end
+
 
 get "/edit/status" do
   erb :"edit_status_form"
 end
 
-# # when get the save do bleh
-# get do
-# end
+get "/edit/save_new_status" do
+  song = Song.find(params["id"])
+  song.status_id = (params["stage"])
+  song.save
+  
+  @song_edit = true
+  erb :"complete_song_list"
+end
 
+##________________________________DELETE__________________
+
+get "/delete/song" do
+  erb :"delete_song_form"
+end
+
+get "/delete/song_save" do
+  song = Song.new(params["id"])
+  song.delete_song_record(params["id"])
+  @song_delete = true
+  erb :"complete_song_list"
+end
+
+get "/delete/type" do
+  erb :"delete_type_form"
+end
+
+
+get "/delete/type_save" do
+  Genre.delete_type(params["id"])
+  "genre type deleted"
+end
+
+get"/delete/stage" do
+    erb :"delete_stage_form"
+end
+
+get "/delete/stage_save" do
+  binding.pry
+  Status.delete_stage(params["id"])
+  "Status stage deleted"
+
+end
+
+
+##________________________________________________________
 

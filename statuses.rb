@@ -30,8 +30,11 @@ class Status
     CONNECTION.execute(query_string)
   end
   
-  # def get.stage(stage_id)
-  #   #do something to anty up 1 and get back 'country'
-  # end
-  #
+  #deletes existing stage
+  def self.delete_stage(delete_selected)
+    binding.pry
+    CONNECTION.execute("DELETE FROM statuses WHERE id = #{delete_selected};")
+    # CONNECTION.execute("DELETE FROM statuses WHERE id = 5;")
+  end
+
 end

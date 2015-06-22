@@ -32,7 +32,9 @@ class Genre
     CONNECTION.execute(query_string)
   end
     
-# def get.type(type_id)
-#   #do something to anty up 1 and get back 'Wish '
-# end  
+  #deletes existing genre
+  def self.delete_type(delete_selected)
+    CONNECTION.execute("DELETE FROM genres WHERE id = #{delete_selected};")
+  end
+
 end
