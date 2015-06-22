@@ -1,0 +1,8 @@
+ 
+     <ul>
+       <li><b>ID&emsp;Title&emsp;Artist&emsp;Genre&emsp;Status&emsp;Desire Level  </b></li>
+<%  @these_songs.each do |song| %> 
+         <li> <%= song["id"] %>     <%= song["title"] %>     <%= song["artist"] %>     <%= song["genre_id"] %>  <%= song["status_id"] %>  <%= song["desire_level"] %>  </li>
+      <% end %>
+    </ul>
+  

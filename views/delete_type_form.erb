@@ -1,0 +1,12 @@
+<form action="type_save">
+  <h3>Delete an existing song</h3>
+  <ul>the current stages are:
+    <% Genre.all.each do |genre| %>
+       <li> ID<%= genre.id %> – <%= genre.type %> </li>
+    <% end %>
+  </ul>
+  <label for="id">What is the id of the genre type you'd like to delete?</label>
+      <input type="text" placeholder="3" name="id"></br>
+  </br>
+  <input type="submit">
+</form>

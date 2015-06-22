@@ -1,3 +1,13 @@
+<% if @desire_level %>
+  <p>Desire Level has been adjusted</p>
+<% end %>
+<% if @song_edit %>
+  <p>Song has been updated</p>
+<% end %>
+<% if @song_delete %>
+  <p>Song has been deleted</p>
+<% end %>
+
      <ul>
       <% Song.all.each do |song| %>
          <li> <%= song.song_id %> – <%= song.title %> – <%= song.artist %> genre: <%= song.genre_id %> status: <%= song.status_id %> desire level: <%= song.desire_level %>  </li>
