@@ -1,4 +1,4 @@
-<form action="save_new_title">
+<form action="save_new_status">
   <h3>Edit an existing song</h3>
    <ul>Songs in your inventory are:
     <% Song.all.each do |song| %>
@@ -7,7 +7,11 @@
   </ul>
   <label for="id">What is the id of the song you'd like to edit</label>
       <input type="text" placeholder="3" name="id"></br>
-  <label for="title">What is the new title?</label>
-      <input type="text" placeholder="New Title" name="new_title"></br>
+  <label for="title">What is the new status?</label>
+      <select name="stage">
+        <% Status.all.each do |status| %>
+           <option value= "<%= status.id %>" ><%= status.stage %> </option>
+        <% end %>
+      </select>
   <input type="submit">
 </form>

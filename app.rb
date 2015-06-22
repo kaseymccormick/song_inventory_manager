@@ -157,7 +157,6 @@ get "/edit/save_new_genre" do
   erb :"complete_song_list"
 end
 
-
 get "/edit/status" do
   erb :"edit_status_form"
 end
@@ -171,6 +170,26 @@ get "/edit/save_new_status" do
   erb :"complete_song_list"
 end
 
+get "/edit/complete_record" do
+  erb :"edit_song_record_form"
+end
+
+get "/edit/save_updated_song_record" do
+  song = Song.find(params["id"])
+  
+  song.title = (params["new_title"])
+  song.artist = (params["new_artist"])
+  song.genre_id = (params["type"])
+  song.status_id = (params["stage"])
+  
+  
+  song.save
+  
+  
+  
+  @song_edit = true
+  erb :"complete_song_list"
+end
 ##________________________________DELETE__________________
 
 get "/delete/song" do
