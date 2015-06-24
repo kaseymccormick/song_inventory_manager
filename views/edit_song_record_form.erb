@@ -1,0 +1,31 @@
+<form action="save_updated_song_record">
+  <h3>Edit an existing song</h3>
+   <ul>Songs in your inventory are:
+    <% Song.all.each do |song| %>
+       <li> id: <%= song.song_id %> – <%= song.title %> – <%= song.artist %> genre: <%= song.genre_id %> status: <%= song.status_id %> desire level: <%= song.desire_level %>  </li>
+    <% end %>
+  </ul>
+  <label for="id">What is the id of the song you'd like to edit</label>
+      <input type="text" placeholder="3" name="id"></br>
+      
+      <label for="title">What is the new title?</label>
+        <input type="text" placeholder="New Title" name="new_title"></br>
+        
+      <label for="artist">Who is the new artist?</label>
+        <input type="text" placeholder="New Artist" name="new_artist"></br>
+      
+      <label for="type">What is the new genre type?</label>
+        <select name="type">
+          <% Genre.all.each do |genre| %>
+             <option value= "<%= genre.id %>" ><%= genre.type %> </option>
+          <% end %>
+        </select></br>
+        
+      <select name="stage">
+        <% Status.all.each do |status| %>
+           <option value= "<%= status.id %>" ><%= status.stage %> </option>
+        <% end %>
+      </select></br></br>
+          
+  <input type="submit">
+</form>
