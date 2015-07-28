@@ -5,4 +5,10 @@
          <li> <%= song["id"] %>     <%= song["title"] %>     <%= song["artist"] %>     <%= song["genre_id"] %>  <%= song["status_id"] %>  <%= song["desire_level"] %>  </li>
       <% end %>
     </ul>
-  
+  <%=  CONNECTION.execute("select days_id, timeframes_id, 
+  from (select days_id
+      , timeframes_id
+      , row_number() over (partition by days_id order by count(*) Desc) as RN
+      from T
+      group by days_id, timeframes_) T_with_RN
+  where RN = 1")%>
